@@ -1,0 +1,6 @@
+f = open("rosalind_subs (1).txt", "r")
+s,t = str(f.readline()[:-1]), str(f.readline()[:-1])
+r = []
+for i in range(len(s)-len(t)):
+    if s[i:].startswith(t): r.append(i+1)
+print(*r)
