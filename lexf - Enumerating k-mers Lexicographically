@@ -1,0 +1,5 @@
+f = open("rosalind_lexf.txt", "r")
+S, N = f.readline().split(), int(f.readline())
+for s in S:
+    for i in range(len(S)):
+        print(s+S[i])
