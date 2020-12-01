@@ -1,0 +1,7 @@
+def wabbits(n,k):
+    bigr = tot = 1
+    for i in range(n-1):
+        bigr, tot = bigr+(tot*k), bigr
+    return(tot) 
+    
+wabbits(30,5)
