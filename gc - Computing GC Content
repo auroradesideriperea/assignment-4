@@ -1,0 +1,21 @@
+f = open("rosalind_gc.txt", "r")
+N = f.readlines()
+d = {}
+
+#creating dictionary label : DNA string
+for n in N:
+    if n.startswith('>'):
+        s = ''
+        l = n[1:-1]
+    else:
+        if s == '': s = n
+        else: s += n
+    d[l] =  s.replace('\n', '')
+    
+#computing GC content
+D = {}
+for (k,v) in d.items():
+    D[round((v.count('C')+v.count('G'))*100 / len(v),6)] = k
+    
+#printing string having the highest GC-content
+print(str(D[max(D.keys())]) + '\n' + str(max(D.keys())))
