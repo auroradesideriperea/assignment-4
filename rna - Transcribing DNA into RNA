@@ -1,0 +1,4 @@
+f = open("rosalind_rna.txt", "r")
+dna = str(f.readline())
+rna = dna.replace('T', 'U')
+print(rna)
