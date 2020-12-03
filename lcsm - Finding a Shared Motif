@@ -1,0 +1,26 @@
+def lcsm(file):
+    #creating sorted list of strings having the longest one first
+    f = open(file, "r")
+    N = f.readlines()
+    S = []
+    s = ''
+    for i in range(1,len(N)):
+        if not N[i].startswith('>'): s += N[i].replace('\n','')
+        else:
+            S.append(s)
+            s = ''
+        if i == (len(N)-1): S.append(s)
+    S = sorted(S, key=len, reverse=True)
+    
+    #creating list with all common substrings of len>1
+    R = []
+    for i in range(len(S[0])):
+        for j in range(i+2, len(S[0])):
+            if S[0][i:j] in S[1]:
+                if S[0][i:j] in S[2]:
+                    R.append(S[0][i:j])
+                    
+    #printing longest common substring
+    print(max(R, key=len))
+
+lcsm("rosalind_lcsm.txt")
