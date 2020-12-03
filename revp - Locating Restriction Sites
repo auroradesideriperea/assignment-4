@@ -1,0 +1,19 @@
+f = open("rosalind_revp.txt", "r")
+_, fl = f.readline(), f.readlines()
+dna = ''
+for i in range(len(fl)):
+        if i==(len(fl)-1): dna+=fl[i]
+        else: dna+=fl[i][:-1]
+
+def palindrome(seq):
+    rev = ''
+    for s in seq:
+        if s == 'A': rev += 'T'
+        elif s == 'T': rev += 'A'
+        elif s == 'C': rev += 'G'
+        else: rev += 'C'
+    return(seq == rev[::-1])
+
+for i in range(len(dna)+1):
+    for j in range(i+1,len(dna)+1):
+        if (4<=(j-i)<=12) and palindrome(dna[i:j])==True: print(i+1,j-i)
