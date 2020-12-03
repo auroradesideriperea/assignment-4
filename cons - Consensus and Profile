@@ -1,0 +1,42 @@
+def cons(file):
+    #DNA strings matrix
+    f = open(file, "r")
+    N = f.readlines()     
+    seq = []
+    s = ''
+    for i in range(1,len(N)):
+        if not N[i].startswith('>'): s += N[i].replace('\n','')
+        else:
+            seq.append(s)
+            s = ''
+        if i == (len(N)-1): seq.append(s)
+    
+    #Profile matrix
+    A, C, G, T = [0]*len(s), [0]*len(s), [0]*len(s), [0]*len(s)
+    for s in seq:
+        for i in range(len(s)):
+            if s[i] == 'A': A[i] += 1
+            elif s[i] == 'T': T[i] += 1
+            elif s[i] == 'C': C[i] += 1
+            else: G[i] += 1
+    
+    #Consensus string
+    cs = ''
+    for i in range(len(s)):
+        I = []
+        I.append(A[i]), I.append(C[i]), I.append(G[i]), I.append(T[i])
+        cs += str(I.index(max(I)))
+    for l in cs:
+        if l=='0': cs = cs.replace(l,'A')
+        elif l=='1': cs = cs.replace(l,'C')
+        elif l=='2': cs = cs.replace(l,'G')
+        else: cs = cs.replace(l,'T')
+    
+    #Printing outputs
+    print(cs)
+    print('A:',*A)
+    print('C:',*C)
+    print('G:',*G)
+    print('T:',*T)
+            
+cons('rosalind_cons.txt')
