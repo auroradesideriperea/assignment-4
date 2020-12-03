@@ -1,7 +1,7 @@
-def wabbits(n,k):
-    bigr = tot = 1
-    for i in range(n-1):
-        bigr, tot = bigr+(tot*k), bigr
-    return(tot) 
-    
-wabbits(30,5)
+def fib(n,k):
+    if n<=2: return 1
+    else: return fib(n-1,k) + k*fib(n-2,k)
+
+f = open("rosalind_fib.txt", "r")
+n,k = map(int,f.readline().split(' '))
+print(fib(n,k))
