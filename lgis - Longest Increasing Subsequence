@@ -1,0 +1,15 @@
+from itertools import combinations
+def lgis(file):
+    f = open(file, "r")
+    N, P, S = int(f.readline()), list(map(int,f.readline().split())), []
+    for i in reversed(range(N)):
+        for x in (list(combinations(P,r=i))):
+            if len(S)!=0: break
+            if x==tuple(sorted(x)):
+                S.append(x)
+        for x in (list(combinations(P,r=i))):
+            if len(S)!=1: break
+            if x==tuple(sorted(x,reverse=True)):
+                S.append(x)
+    for x in S: print(*x)    
+lgis("sample.txt")
